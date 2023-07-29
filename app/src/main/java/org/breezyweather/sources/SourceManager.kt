@@ -39,6 +39,7 @@ import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
+import org.breezyweather.sources.weatherbit.WeatherbitService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
@@ -51,6 +52,7 @@ class SourceManager @Inject constructor(
     hereService: HereService,
     ipSbService: IpSbLocationService,
     metNoService: MetNoService,
+    weatherbitService: WeatherbitService,
     mfService: MfService,
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
@@ -74,6 +76,7 @@ class SourceManager @Inject constructor(
         openWeatherService,
         pirateWeatherService,
         hereService,
+        weatherbitService,
         mfService,
         chinaService,
 
@@ -87,35 +90,47 @@ class SourceManager @Inject constructor(
 
     // Location
     fun getLocationSources(): List<LocationSource> = sourceList.filterIsInstance<LocationSource>()
-    fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
-    fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
-        ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
+    fun getLocationSource(id: String): LocationSource? =
+        getLocationSources().firstOrNull { it.id == id }
+
+    fun getLocationSourceOrDefault(id: String): LocationSource =
+        getLocationSource(id) ?: getLocationSource(DEFAULT_LOCATION_SOURCE)!!
 
     // Weather
-    fun getMainWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
-    fun getMainWeatherSource(id: String): MainWeatherSource? = getMainWeatherSources().firstOrNull { it.id == id }
-    fun getMainWeatherSourceOrDefault(id: String): MainWeatherSource = getMainWeatherSource(id)
-        ?: getMainWeatherSource(BuildConfig.DEFAULT_WEATHER_SOURCE)!!
-    fun getConfiguredMainWeatherSources(): List<MainWeatherSource> = getMainWeatherSources().filter {
-        it !is ConfigurableSource || it.isConfigured
-    }
+    fun getWeatherSources(): List<WeatherSource> = sourceList.filterIsInstance<WeatherSource>()
+    fun getWeatherSource(id: String): WeatherSource? =
+        getWeatherSources().firstOrNull { it.id == id }
+
+    fun getWeatherSourceOrDefault(id: String): WeatherSource =
+        getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
 
     // Secondary weather
     fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> = sourceList.filterIsInstance<SecondaryWeatherSource>()
     fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources().firstOrNull { it.id == id }
 
     // Location search
-    fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()
-    fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources().firstOrNull { it.id == id }
-    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id)
-        ?: getLocationSearchSource(BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE)!!
-    fun getConfiguredLocationSearchSources(): List<LocationSearchSource> = getLocationSearchSources().filter {
-        it !is ConfigurableSource || it.isConfigured
-    }
+    fun getLocationSearchSources(): List<LocationSearchSource> =
+        sourceList.filterIsInstance<LocationSearchSource>()
+
+    fun getLocationSearchSource(id: String): LocationSearchSource? =
+        getLocationSearchSources().firstOrNull { it.id == id }
+
+    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource =
+        getLocationSearchSource(id) ?: getLocationSearchSource(DEFAULT_LOCATION_SEARCH_SOURCE)!!
+
+    fun getDefaultLocationSearchSource(): LocationSearchSource =
+        getLocationSearchSources().firstOrNull { it.id == DEFAULT_LOCATION_SEARCH_SOURCE }!!
 
     // Reverse geocoding
-    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> = sourceList.filterIsInstance<ReverseGeocodingSource>()
-    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
+    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> =
+        sourceList.filterIsInstance<ReverseGeocodingSource>()
+
+    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? =
+        getReverseGeocodingSources().firstOrNull { it.id == id }
+
+    fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource =
+        getReverseGeocodingSource(id)
+            ?: getReverseGeocodingSource(DEFAULT_REVERSE_GEOCODING_SOURCE)!!
 
     // Configurables sources
     fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()
