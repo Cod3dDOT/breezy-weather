@@ -327,6 +327,11 @@
     <string name="weather_updated_in_background">Updated in background</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
+    <string name="placeholder_app_widget_pin">Pin an App Widget:</string>
+    <string name="placeholder_app_widget_pin_unavailable">Pinning is not supported in the default launcher</string>
+    <string name="placeholder_app_widget">Sample to demonstrate how to get the app\'s appwidgets info and request the user to pin them in the launcher.\n\nTap any of the items below to request the launcher to pin them:</string>
+    <string name="widget_forecast_glance">Forecast (Experimental)</string>
+    <string name="widget_forecast_glance_description">Provides forecast (hourly or daily)</string>
     <string name="widget_day">Daily</string>
     <string name="widget_week">Weekly</string>
     <string name="widget_day_week">Daily + Weekly</string>

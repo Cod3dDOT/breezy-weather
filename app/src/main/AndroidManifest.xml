@@ -225,7 +225,6 @@
             android:exported="true" />
 
         <!-- widget -->
-
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
@@ -373,6 +372,24 @@
             android:exported="false" />
 
         <!-- widget -->
+        <receiver
+            android:name=".background.receiver.glance.AppWidgetPinnedReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".background.receiver.glance.ForecastWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_forecast_glance" >
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_forecast_glance" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".background.receiver.widget.WidgetMaterialYouForecastProvider"
             android:label="@string/widget_material_you_forecast"

@@ -159,6 +159,8 @@ dependencies {
     implementation libs.navigation.compose
 
     implementation libs.accompanist.permissions
+    implementation libs.glance.appwidget
+    implementation libs.glance.material3
 
     testImplementation libs.bundles.test
 

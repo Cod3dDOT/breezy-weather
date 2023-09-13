@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="110dp"
+    android:minHeight="40dp"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/widget_forecast_glance"
+    android:description="@string/widget_forecast_glance"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:previewLayout="@layout/widget_forecast_glance"
+    android:targetCellHeight="1"
+    android:targetCellWidth="2"
+    android:initialKeyguardLayout="@layout/widget_forecast_glance">
+</appwidget-provider>
+
+    <!--    android:previewImage="@drawable/weather_forecast_widget_preview"-->
