@@ -187,6 +187,8 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons)
     implementation(libs.navigation.compose)
+    implementation(libs.glance.appwidget)
+    implementation(libs.glance.material3)
     lintChecks(libs.compose.lint.checks)
 
     implementation(libs.accompanist.permissions)
